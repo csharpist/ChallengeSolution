@@ -1,0 +1,62 @@
+﻿@model DatabaseLibrary.Conrete.Dto.UserDto
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+
+<h2>CreateUser</h2>
+
+
+<div id="createUserForm">
+
+    <table>
+        <tr>
+            <td>First name</td>
+            <td><input type="text" name="firstName" class="input-sm" /></td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td><input type="text" name="lastName" class="input-sm" /></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td><input type="text" name="phone" class="input-sm" /></td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td><input type="text" name="salary" class="input-sm" /></td>
+        </tr>
+    </table>
+    <button id="createUserButton" class="btn btn-default">Create</button>
+
+
+</div>
+
+
+@section scripts
+{
+    <script>
+
+        $('#createUserButton').click(function () {
+
+            var data = {
+                FirstName: $('#createUserForm input[name="firstName"]').val(),
+                LastName: $('#createUserForm input[name="lastName"]').val(),
+                Salary: $('#createUserForm input[name="salary"]').val(),
+                Phone: $('#createUserForm input[name="phone"]').val()
+            };
+
+            $.ajax({
+                url: '/api/user/put',
+                type: 'post',
+                data: data,
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+
+        });
+
+    </script>
+
+}
